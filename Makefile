@@ -1,5 +1,6 @@
 
 CORES	:= $(shell cat /proc/cpuinfo | grep process | wc -l)
+DESTDIR	:= $(shell pwd)/../install
 
 TARGET	= live
 Makefile=$(TARGET)/Makefile
@@ -9,7 +10,7 @@ PREPARE := genMakefiles
 endif
 
 all: $(PREPARE)
-	$(MAKE) -C $(TARGET) -j $(CORES)
+	DESTDIR=$(DESTDIR) $(MAKE) -C $(TARGET) -j $(CORES)
 
 genMakefiles:
 	@(cd $(TARGET) ; ./genMakefiles linux)
@@ -18,3 +19,4 @@ clean: $(PREPARE)
 	$(MAKE) -C $(TARGET) clean
 
 install:
+	$(MAKE) -C $(TARGET) install

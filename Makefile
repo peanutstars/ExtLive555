@@ -1,4 +1,6 @@
 
+CORES	:= $(shell cat /proc/cpuinfo | grep process | wc -l)
+
 TARGET	= live
 Makefile=$(TARGET)/Makefile
 
@@ -7,12 +9,12 @@ PREPARE := genMakefiles
 endif
 
 all: $(PREPARE)
-	$(MAKE) -C $(TARGET)
+	$(MAKE) -C $(TARGET) -j $(CORES)
 
 genMakefiles:
 	@(cd $(TARGET) ; ./genMakefiles linux)
 
-clean:
+clean: $(PREPARE)
 	$(MAKE) -C $(TARGET) clean
 
 install:

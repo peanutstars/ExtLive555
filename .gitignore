@@ -1,0 +1,9 @@
+live/BasicUsageEnvironment/Makefile
+live/Makefile
+live/UsageEnvironment/Makefile
+live/groupsock/Makefile
+live/liveMedia/Makefile
+live/mediaServer/Makefile
+live/proxyServer/Makefile
+live/testProgs/Makefile
+

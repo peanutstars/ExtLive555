@@ -11,6 +11,7 @@ endif
 
 all: $(PREPARE)
 	DESTDIR=$(DESTDIR) $(MAKE) -C $(TARGET) -j $(CORES)
+	DESTDIR=$(DESTDIR) $(MAKE) -C $(TARGET) install
 
 genMakefiles:
 	@(cd $(TARGET) ; ./genMakefiles linux)
@@ -19,4 +20,4 @@ clean: $(PREPARE)
 	$(MAKE) -C $(TARGET) clean
 
 install:
-	$(MAKE) -C $(TARGET) install
+	DESTDIR=$(DESTDIR) $(MAKE) -C $(TARGET) install
